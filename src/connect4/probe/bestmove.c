@@ -60,7 +60,7 @@ int main(int argc, char const *argv[]) {
         }
     }
 
-    if (argc < 3) {
+    if (argc < 2) {
         perror("Wrong number of arguments supplied: see bestmove.out -h for call signature\n");
         exit(EXIT_FAILURE);
     }
@@ -77,8 +77,13 @@ int main(int argc, char const *argv[]) {
 
     // read in move sequence and apply moves to connect4 board
 
-    const char *moveseq = argv[2];
-
+    char *moveseq;
+    if(argc < 3) {
+        moveseq = "";
+    } else {
+        moveseq = argv[2];
+    }
+    
     printf("input move sequence: %s\n", moveseq);
     uint8_t move;
     for (int i = 0; i < strlen(moveseq); i++) {
